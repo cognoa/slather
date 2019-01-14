@@ -297,7 +297,6 @@ module Slather
         end
 
         if coverage_files != nil
-          print("coverage_files.first = ", coverage_files.first)
           dir = Pathname.new(coverage_files.first).parent()
         end
       end
