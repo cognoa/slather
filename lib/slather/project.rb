@@ -287,7 +287,8 @@ module Slather
 
       if dir == nil && Slather.xcode_version[0] >= 9
         # Xcode 9 moved the location of Coverage.profdata
-        coverage_files = Dir[File.join(build_directory, "/**/Logs/Test/*.xccovreport")]
+        test_logs_path = File.join(build_directory, "/**/Logs/Test/")
+        coverage_files = Dir["#{test_logs_path}*.xccovreport", "#{test_logs_path}*.xcresult/*/action.xccovreport"].sort_by { |filename| File.mtime(filename) }.reverse
 
         if coverage_files.count == 0
           # Look up one directory
@@ -296,6 +297,7 @@ module Slather
         end
 
         if coverage_files != nil
+          print("coverage_files.first = ", coverage_files.first)
           dir = Pathname.new(coverage_files.first).parent()
         end
       end
