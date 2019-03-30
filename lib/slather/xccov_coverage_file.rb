@@ -97,7 +97,7 @@ module Slather
     end
 
     def cleaned_gcov_data
-      data = xccov_data.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '').gsub(/^function(.*) called [0-9]+ returned [0-9]+% blocks executed(.*)$\r?\n/, '')
+      data = xccov_data.join("\n").encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '').gsub(/^function(.*) called [0-9]+ returned [0-9]+% blocks executed(.*)$\r?\n/, '')
       data.gsub(/^branch(.*)$\r?\n/, '')
     end
 
@@ -109,6 +109,7 @@ module Slather
       unless self.json.empty?
         return self.json['coveredLines'].to_i
       end
+      return 0
     end
 
     def num_lines_testable

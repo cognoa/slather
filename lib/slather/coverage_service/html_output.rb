@@ -113,7 +113,7 @@ module Slather
                   cov.td(:class => "data_filename") {
                     cov.a filename, :href => filename_link
                   }
-                  cov.td "#{coverage_file.line_coverage_data.count}", :class => "data_lines"
+                  cov.td "#{coverage_file.line_coverage_data}", :class => "data_lines"
                   cov.td "#{coverage_file.num_lines_testable}", :class => "data_relevant"
                   cov.td "#{coverage_file.num_lines_tested}", :class => "data_covered"
                   cov.td "#{(coverage_file.num_lines_testable - coverage_file.num_lines_tested)}", :class => "data_missed"
