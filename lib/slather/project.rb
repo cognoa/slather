@@ -128,11 +128,11 @@ module Slather
         xccov_data = `xcrun xccov view --json "#{report_file}"`
         xccov_json = JSON.parse(xccov_data)
 
+        xccovarchive = report_file.sub '.xccovreport', '.xccovarchive'
+        
         xccov_json["targets"].each do |target|
           target["files"].each do |file|
-            Dir["#{xccov_coverage_dir}/*.xccovarchive"].map do |xccovarchive|
-              xccov_source_file << coverage_file = coverage_file_class.new(self, file["name"], file["path"], "#{xccovarchive}", file)
-            end
+            xccov_source_file << coverage_file = coverage_file_class.new(self, file["name"], file["path"], "#{xccovarchive}", file)
           end
         end
 
