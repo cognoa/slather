@@ -129,7 +129,7 @@ module Slather
         xccov_json = JSON.parse(xccov_data)
 
         xccovarchive = report_file.sub '.xccovreport', '.xccovarchive'
-        
+
         xccov_json["targets"].each do |target|
           target["files"].each do |file|
             xccov_source_file << coverage_file = coverage_file_class.new(self, file["name"], file["path"], "#{xccovarchive}", file)
@@ -368,7 +368,6 @@ module Slather
         configure_coverage_service
         configure_source_directory
         configure_output_directory
-        configure_input_format
         configure_arch
         configure_binary_file
         configure_decimals
@@ -415,17 +414,17 @@ module Slather
       self.ci_service ||= (self.class.yml["ci_service"] || :travis_ci)
     end
 
-    def configure_input_format
-      self.input_format ||= (self.class.yml["input_format"] || "auto")
-    end
-
     def input_format=(format)
       format ||= "auto"
       unless %w(gcov profdata xccov auto).include?(format)
         raise StandardError, "Only supported input formats are gcov, profdata, xccov or auto"
       end
       if format == "auto"
-        @input_format = Slather.xcode_version[0] < 7 ? "gcov" : "profdata"
+        if Slather.xcode_version[0] >= 10
+          @input_format = "xccov"
+        else
+          @input_format = Slather.xcode_version[0] < 7 ? "gcov" : "profdata"
+        end
       else
         @input_format = format
       end
