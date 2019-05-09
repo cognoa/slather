@@ -132,7 +132,12 @@ module Slather
 
         xccov_json["targets"].each do |target|
           target["files"].each do |file|
+            if self.ignore_list.any? { |ignore| File.fnmatch(ignore, file["path"]) }
+#               p "🔴 " + file["path"]
+            else
+#               p "✅ " + file["path"]
             xccov_source_file << coverage_file = coverage_file_class.new(self, file["name"], file["path"], "#{xccovarchive}", file)
+            end
           end
         end
 
