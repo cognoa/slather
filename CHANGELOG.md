@@ -1,6 +1,19 @@
 # CHANGELOG
 
-## master
+## v2.4.7
+
+* Update dependencies
+  [dnedrow](https://github.com/dnedrow)
+
+* Fixed errors when llvm-cov argument length exceeds ARG_MAX
+  [weibel](https://github.com/weibel)
+  [#414](https://github.com/SlatherOrg/slather/pull/414)
+
+* Show "No coverage directory found." instead of "implicit conversion nil into String"
+  [phimage](https://github.com/phimage)
+  [#381](https://github.com/SlatherOrg/slather/pull/381) [#341](https://github.com/SlatherOrg/slather/issues/341)
+
+## v2.4.6
 
 * Fix .dSYM and .swiftmodule files filtering in find_binary_files()
   [krin-san](https://github.com/krin-san)
@@ -8,7 +21,11 @@
 
 * Fixed loading coverage for a single source file
   [blackm00n](https://github.com/blackm00n)
-  [#377](https://github.com/SlatherOrg/slather/pull/377)
+  [#377](https://github.com/SlatherOrg/slather/pull/377) [#398](https://github.com/SlatherOrg/slather/pull/398)
+
+* Fixed truncated file list in HTML export
+  [miroslavkovac](https://github.com/miroslavkovac)
+  [#402](https://github.com/SlatherOrg/slather/pull/402) [#261](https://github.com/SlatherOrg/slather/issues/261)
 
 ## v2.4.5
 
