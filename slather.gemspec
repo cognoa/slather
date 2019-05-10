@@ -32,5 +32,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'nokogiri', '~> 1.8'
   spec.add_dependency 'CFPropertyList', '>= 2.2', '< 4'
 
-  spec.add_runtime_dependency 'activesupport', '< 5', '>= 4.0.2'
+  spec.add_runtime_dependency 'activesupport', '>= 4.0.2'
 end
